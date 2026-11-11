@@ -75,7 +75,7 @@ The key stays out of everything ComfyUI saves. The node is saved empty in workfl
 
 ## Example workflows
 
-The `example_workflows` folder has four workflows. They also show up in ComfyUI's template browser under **comfyui-wiro**.
+The `example_workflows` folder has four workflows. They also show up in ComfyUI's template browser, under the folder name the pack was installed with (`comfyui-wiro` or `Wiro-ComfyUI`).
 
 | Workflow | What it does |
 | --- | --- |
