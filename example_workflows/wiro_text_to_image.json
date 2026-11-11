@@ -1,0 +1,326 @@
+{
+  "id": "dfa1e228-9f77-44b8-a0d6-640865ff92b2",
+  "revision": 0,
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "WiroApiKey",
+      "pos": [
+        40,
+        160
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "api_key",
+          "name": "api_key",
+          "type": "STRING",
+          "widget": {
+            "name": "api_key"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "api_secret",
+          "name": "api_secret",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "api_secret"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "wiro_auth",
+          "name": "wiro_auth",
+          "type": "WIRO_AUTH",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WiroApiKey"
+      },
+      "widgets_values": [
+        "",
+        ""
+      ],
+      "widgets_values_named": {
+        "api_key": "",
+        "api_secret": ""
+      }
+    },
+    {
+      "id": 2,
+      "type": "WiroGPTImage2",
+      "pos": [
+        400,
+        80
+      ],
+      "size": [
+        400,
+        368
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "input images",
+          "name": "inputImage",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "mask image (edit)",
+          "name": "inputImageMask",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "wiro_auth",
+          "name": "wiro_auth",
+          "shape": 7,
+          "type": "WIRO_AUTH",
+          "link": 1
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "COMBO",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ratio",
+          "name": "ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "ratio"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "quality",
+          "name": "quality",
+          "type": "COMBO",
+          "widget": {
+            "name": "quality"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "background",
+          "name": "background",
+          "type": "COMBO",
+          "widget": {
+            "name": "background"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "output format",
+          "name": "outputFormat",
+          "type": "COMBO",
+          "widget": {
+            "name": "outputFormat"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "output compression",
+          "name": "outputCompression",
+          "type": "INT",
+          "widget": {
+            "name": "outputCompression"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "number of images",
+          "name": "samples",
+          "type": "INT",
+          "widget": {
+            "name": "samples"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "moderation level",
+          "name": "moderation",
+          "type": "COMBO",
+          "widget": {
+            "name": "moderation"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "timeout",
+          "name": "timeout",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "timeout"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "force_rerun",
+          "name": "force_rerun",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_rerun"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "localized_name": "urls",
+          "name": "urls",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WiroGPTImage2"
+      },
+      "widgets_values": [
+        "A small red fox sitting in fresh snow at sunrise, soft watercolor illustration",
+        "1k",
+        "1:1",
+        "low",
+        "auto",
+        "png",
+        100,
+        1,
+        "low",
+        1800,
+        false
+      ],
+      "widgets_values_named": {
+        "prompt": "A small red fox sitting in fresh snow at sunrise, soft watercolor illustration",
+        "resolution": "1k",
+        "ratio": "1:1",
+        "quality": "low",
+        "background": "auto",
+        "outputFormat": "png",
+        "outputCompression": 100,
+        "samples": 1,
+        "moderation": "low",
+        "timeout": 1800,
+        "force_rerun": false
+      }
+    },
+    {
+      "id": 3,
+      "type": "SaveImage",
+      "pos": [
+        860,
+        80
+      ],
+      "size": [
+        420,
+        470
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "wiro/gpt-image-2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "wiro/gpt-image-2"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      2,
+      "WIRO_AUTH"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
+  "version": 0.4
+}

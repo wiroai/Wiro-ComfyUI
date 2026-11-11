@@ -1,0 +1,526 @@
+{
+  "id": "922010d7-7171-43c7-9235-2ddff6c997e2",
+  "revision": 0,
+  "last_node_id": 4,
+  "last_link_id": 3,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "WiroRunModel",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        400,
+        390
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "wiro_auth",
+          "name": "wiro_auth",
+          "shape": 7,
+          "type": "WIRO_AUTH",
+          "link": null
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_2",
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "video",
+          "name": "video",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "STRING",
+          "widget": {
+            "name": "model"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "parameters",
+          "name": "parameters",
+          "type": "STRING",
+          "widget": {
+            "name": "parameters"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_field",
+          "name": "image_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "image_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_2_field",
+          "name": "image_2_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "image_2_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "audio_field",
+          "name": "audio_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "audio_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "video_field",
+          "name": "video_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "video_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "timeout",
+          "name": "timeout",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "timeout"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "force_rerun",
+          "name": "force_rerun",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_rerun"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "localized_name": "video",
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            1,
+            2
+          ]
+        },
+        {
+          "localized_name": "urls",
+          "name": "urls",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WiroRunModel"
+      },
+      "widgets_values": [
+        "openai/gpt-5-nano",
+        "Write one short image prompt (max 20 words) for a cozy wooden cabin in a snowy forest at dusk. Reply with the prompt only.",
+        "{}",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        1800,
+        false
+      ],
+      "widgets_values_named": {
+        "model": "openai/gpt-5-nano",
+        "prompt": "Write one short image prompt (max 20 words) for a cozy wooden cabin in a snowy forest at dusk. Reply with the prompt only.",
+        "parameters": "{}",
+        "image_field": "auto",
+        "image_2_field": "auto",
+        "audio_field": "auto",
+        "video_field": "auto",
+        "timeout": 1800,
+        "force_rerun": false
+      }
+    },
+    {
+      "id": 2,
+      "type": "PreviewAny",
+      "pos": [
+        40,
+        600
+      ],
+      "size": [
+        430,
+        160
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "source",
+          "name": "source",
+          "type": "*",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 3,
+      "type": "WiroRunModel",
+      "pos": [
+        520,
+        60
+      ],
+      "size": [
+        400,
+        390
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "wiro_auth",
+          "name": "wiro_auth",
+          "shape": 7,
+          "type": "WIRO_AUTH",
+          "link": null
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_2",
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "video",
+          "name": "video",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "STRING",
+          "widget": {
+            "name": "model"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 2
+        },
+        {
+          "localized_name": "parameters",
+          "name": "parameters",
+          "type": "STRING",
+          "widget": {
+            "name": "parameters"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_field",
+          "name": "image_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "image_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_2_field",
+          "name": "image_2_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "image_2_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "audio_field",
+          "name": "audio_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "audio_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "video_field",
+          "name": "video_field",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "video_field"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "timeout",
+          "name": "timeout",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "timeout"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "force_rerun",
+          "name": "force_rerun",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_rerun"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            3
+          ]
+        },
+        {
+          "localized_name": "video",
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "localized_name": "urls",
+          "name": "urls",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WiroRunModel"
+      },
+      "widgets_values": [
+        "openai/gpt-image-2",
+        "",
+        "{\n  \"resolution\": \"1k\",\n  \"ratio\": \"3:2\",\n  \"quality\": \"low\"\n}",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        1800,
+        false
+      ],
+      "widgets_values_named": {
+        "model": "openai/gpt-image-2",
+        "prompt": "",
+        "parameters": "{\n  \"resolution\": \"1k\",\n  \"ratio\": \"3:2\",\n  \"quality\": \"low\"\n}",
+        "image_field": "auto",
+        "image_2_field": "auto",
+        "audio_field": "auto",
+        "video_field": "auto",
+        "timeout": 1800,
+        "force_rerun": false
+      }
+    },
+    {
+      "id": 4,
+      "type": "SaveImage",
+      "pos": [
+        1000,
+        60
+      ],
+      "size": [
+        460,
+        380
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "wiro/run-model"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "wiro/run-model"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      3,
+      2,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      1,
+      3,
+      3,
+      6,
+      "STRING"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
+  "version": 0.4
+}

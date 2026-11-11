@@ -1,0 +1,1023 @@
+{
+  "models": [
+    {
+      "node": "WiroNanoBananaPro",
+      "display_name": "Wiro Nano Banana Pro",
+      "model": "google/nano-banana-pro",
+      "kind": "image",
+      "description": "Google Nano Banana Pro (Gemini 3 Pro Image): creates and edits images at 1K, 2K or 4K from a prompt and up to 14 reference images.",
+      "parameters": [
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "Input Image",
+          "note": "Gemini 3 Pro Preview lets you to mix up to 14 reference images. These 14 images can include the following: to 6 images of objects with high-fidelity to include in the final image, to 5 images of humans to maintain character consistency",
+          "required": false,
+          "advanced": false,
+          "max_files": 14
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "prompt",
+          "note": "The prompt to generate the image.",
+          "required": true,
+          "advanced": false,
+          "default": "Create a realistic group photo using the people from the input images. Place all of them standing together in an open grassy field during daylight. Ensure natural proportions, accurate facial features, and consistent styling. The man should be wearing a well-fitted three-piece suit, and the women should be wearing elegant, colorful dresses. Use soft natural lighting, gentle shadows, and a balanced composition. Maintain photorealism and keep all poses natural and relaxed."
+        },
+        {
+          "id": "aspectRatio",
+          "type": "select",
+          "label": "Aspect Ratio",
+          "note": "Aspect Ratio of the output image",
+          "required": false,
+          "advanced": true,
+          "default": "",
+          "options": [
+            "",
+            "1:1",
+            "2:3",
+            "3:2",
+            "3:4",
+            "4:3",
+            "4:5",
+            "5:4",
+            "9:16",
+            "16:9",
+            "21:9"
+          ]
+        },
+        {
+          "id": "resolution",
+          "type": "select",
+          "label": "Resolution (K)",
+          "note": "Default is 1K",
+          "required": false,
+          "advanced": true,
+          "default": "1K",
+          "options": [
+            "1K",
+            "2K",
+            "4K"
+          ]
+        },
+        {
+          "id": "safetySetting",
+          "type": "select",
+          "label": "Safety Setting",
+          "note": "Safety Setting",
+          "required": false,
+          "advanced": true,
+          "default": "OFF",
+          "options": [
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_ONLY_HIGH",
+            "BLOCK_NONE",
+            "OFF"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroNanoBanana2",
+      "display_name": "Wiro Nano Banana 2",
+      "model": "google/nano-banana-2",
+      "kind": "image",
+      "description": "Google Nano Banana 2 (Gemini 3.1 Flash Image): image generation and editing with up to 14 reference images, from 512 px to 4K.",
+      "parameters": [
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "Input Image",
+          "note": "Gemini 3.1 Flash Preview lets you to mix up to 14 reference images. These 14 images can include the following: Up to 10 images of objects with high-fidelity to include in the final image, up to 4 images of characters to maintain character consistency",
+          "required": false,
+          "advanced": false,
+          "max_files": 14
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "prompt",
+          "note": "The prompt to generate the image.",
+          "required": true,
+          "advanced": false,
+          "default": "A top-down, realistic street photography shot of a tree surrounded by a circular rack of parked bicycles. Colorize the scene with natural, everyday urban colors. The tree canopy features lush, vibrant summer green leaves, and the trunk is a textured, deep bark brown. The paved ground is a realistic asphalt gray, contrasted by crisp, bright white painted street lines. The clustered bicycles feature a variety of realistic metallic and painted finishes: a mix of matte blacks, shiny silvers, and chromes, with scattered realistic accents like a muted red, navy blue, or mustard yellow bike frame. Natural daytime lighting, soft realistic shadows, maintaining the grainy texture and high-angle perspective of the original photo, 8k resolution, photorealistic."
+        },
+        {
+          "id": "aspectRatio",
+          "type": "select",
+          "label": "Aspect Ratio",
+          "note": "Aspect Ratio of the output image",
+          "required": false,
+          "advanced": true,
+          "default": "",
+          "options": [
+            "",
+            "1:1",
+            "1:4",
+            "1:8",
+            "2:3",
+            "3:2",
+            "3:4",
+            "4:1",
+            "4:3",
+            "4:5",
+            "5:4",
+            "8:1",
+            "9:16",
+            "16:9",
+            "21:9"
+          ]
+        },
+        {
+          "id": "resolution",
+          "type": "select",
+          "label": "Resolution (K)",
+          "note": "Default is 1K",
+          "required": false,
+          "advanced": true,
+          "default": "1K",
+          "options": [
+            "512",
+            "1K",
+            "2K",
+            "4K"
+          ]
+        },
+        {
+          "id": "safetySetting",
+          "type": "select",
+          "label": "Safety Setting",
+          "note": "Safety Setting",
+          "required": false,
+          "advanced": true,
+          "default": "OFF",
+          "options": [
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_ONLY_HIGH",
+            "BLOCK_NONE",
+            "OFF"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroGPTImage2",
+      "display_name": "Wiro GPT Image 2",
+      "model": "openai/gpt-image-2",
+      "kind": "image",
+      "description": "OpenAI GPT Image 2: generates images, or edits up to 16 input images, with an optional mask.",
+      "parameters": [
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "Input Images",
+          "note": "Optional. Input images to edit, up to 16.",
+          "required": false,
+          "advanced": false,
+          "max_files": 16
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "Prompt",
+          "note": "Required. Text description of the desired image or image edit. Maximum 32,000 characters.",
+          "required": true,
+          "advanced": false,
+          "default": "A hyper-detailed, high-resolution photographic edit based on image. The clear rocks glass, the metallic spoon, and the rich, dark mahogany wooden table with its complex grain and precise geometric shafts of warm sunlight must all remain in their exact positions and forms. Inside the glass, the simple iced coffee is replaced by a perfectly layered Café Bombón with complex, high-clarity details. A thick, smooth layer of sweetened condensed milk forms the base, topped by a precise layer of dark, rich espresso, and finally an elegant cap of airy, micro-foamed milk. The simple ice cubes are replaced by large, geometrically precise, slow-melting artisan ice spheres showing internal crystal structures and fractures, all glistening with heavy, detailed condensation on the glass. The metallic spoon is highly polished to a mirror-like finish, reflecting the layers of the drink and the wood. The dust motes floating in the sunbeams are rendered with extreme fidelity as delicate, golden, complex particles. The entire scene is polished to perfection, with the contrast between foam, liquid, glass, and wood grain maximized. The lighting is intensified, making the glass and its contents glow from within, all while maintaining the exact existing shadow patterns."
+        },
+        {
+          "id": "inputImageMask",
+          "type": "combinefileinput",
+          "label": "Mask Image (Edit)",
+          "note": "Optional. Requires input image(1). Mask image to define specific areas to edit.",
+          "required": false,
+          "advanced": true,
+          "max_files": 1
+        },
+        {
+          "id": "resolution",
+          "type": "select",
+          "label": "Resolution",
+          "note": "Required. Output resolution tier.",
+          "required": true,
+          "advanced": false,
+          "default": "1k",
+          "options": [
+            "1k",
+            "2k",
+            "4k"
+          ]
+        },
+        {
+          "id": "ratio",
+          "type": "select",
+          "label": "Ratio",
+          "note": "Required. Aspect ratio of the output image.",
+          "required": true,
+          "advanced": false,
+          "default": "1:1",
+          "options": [
+            "1:1",
+            "3:2",
+            "2:3",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ]
+        },
+        {
+          "id": "quality",
+          "type": "select",
+          "label": "Quality",
+          "note": "Required. Output image quality.",
+          "required": true,
+          "advanced": true,
+          "default": "low",
+          "options": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "id": "background",
+          "type": "select",
+          "label": "Background",
+          "note": "Optional. Background setting.",
+          "required": false,
+          "advanced": true,
+          "default": "auto",
+          "options": [
+            "auto",
+            "opaque"
+          ]
+        },
+        {
+          "id": "outputFormat",
+          "type": "select",
+          "label": "Output Format",
+          "note": "Optional. Output image format. Defaults to png.",
+          "required": false,
+          "advanced": true,
+          "default": "png",
+          "options": [
+            "png",
+            "jpeg",
+            "webp"
+          ]
+        },
+        {
+          "id": "outputCompression",
+          "type": "number",
+          "label": "Output Compression",
+          "note": "Optional. Compression level (0-100) for jpeg or webp output only. Defaults to 100.",
+          "required": false,
+          "advanced": true,
+          "default": "100",
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "samples",
+          "type": "number",
+          "label": "Number of Images",
+          "note": "Required. Number of images to generate (1-10).",
+          "required": true,
+          "advanced": true,
+          "default": "1",
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "moderation",
+          "type": "select",
+          "label": "Moderation Level",
+          "note": "Optional. Content moderation level.",
+          "required": false,
+          "advanced": true,
+          "default": "low",
+          "options": [
+            "auto",
+            "low"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroSeedream45",
+      "display_name": "Wiro Seedream 4.5",
+      "model": "bytedance/seedream-v4-5",
+      "kind": "image",
+      "description": "ByteDance Seedream 4.5: image generation and editing from a prompt and up to 14 reference images, at 2K or 4K.",
+      "parameters": [
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "input image",
+          "note": "Optional list of input image URL(s) and/or file(s) for creating, editing or combining images",
+          "required": false,
+          "advanced": false,
+          "max_files": 14
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "Prompt",
+          "note": "Please provide how many images you want to generate in the prompt. Edit max images according to it.",
+          "required": true,
+          "advanced": false,
+          "default": "Replace the clothing in image 1 with the outfit from image 2."
+        },
+        {
+          "id": "resolution",
+          "type": "select",
+          "label": "Resolution",
+          "note": "Optional for i2i. Required for t2i. If image is provided it will get the first images dimensions and calculate it according to 3686400, 16777216 these pixel counts, if lower it will be scaled up, if higher it will be scaled down by the given images ratio.",
+          "required": false,
+          "advanced": true,
+          "default": "",
+          "options": [
+            "",
+            "2k",
+            "4k"
+          ]
+        },
+        {
+          "id": "aspectRatio",
+          "type": "select",
+          "label": "Aspect Ratio",
+          "note": "Optional for i2i, Required for t2i. If image(s) provided it will get the image/first image ratio.",
+          "required": false,
+          "advanced": true,
+          "default": "",
+          "options": [
+            "",
+            "1:1",
+            "2:3",
+            "3:2",
+            "3:4",
+            "4:3",
+            "4:5",
+            "5:4",
+            "16:9",
+            "9:16",
+            "21:9",
+            "9:21"
+          ]
+        },
+        {
+          "id": "maxImages",
+          "type": "number",
+          "label": "Maximum number of output images",
+          "note": "This is the limiter for number of outputs. Number of input reference images + Number of generated must be smaller then or equal to 15.",
+          "required": true,
+          "advanced": true,
+          "default": "1",
+          "min": 1,
+          "max": 15,
+          "step": null
+        },
+        {
+          "id": "watermark",
+          "type": "select",
+          "label": "Watermark",
+          "note": "Whether the generated image(s) contains a watermark.",
+          "required": true,
+          "advanced": true,
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroVeo31",
+      "display_name": "Wiro Veo 3.1",
+      "model": "google/veo3-1",
+      "kind": "video",
+      "description": "Google Veo 3.1: text to video, image to video from a first and last frame, or video from up to 3 reference images.",
+      "parameters": [
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "First frame",
+          "note": "Optional. Input image for the first frame of the video.",
+          "required": false,
+          "advanced": false,
+          "max_files": 1
+        },
+        {
+          "id": "inputImage2",
+          "type": "combinefileinput",
+          "label": "Last Frame",
+          "note": "Optional. Last frame of the video.",
+          "required": false,
+          "advanced": false,
+          "max_files": 1
+        },
+        {
+          "id": "inputImage3",
+          "type": "combinefileinput",
+          "label": "Reference Images",
+          "note": "Optional. Accepts 1 to 3 reference images. Duration will be 8 seconds by default. First and last images will be ignored.",
+          "required": false,
+          "advanced": false,
+          "max_files": 3
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "prompt",
+          "note": "The prompt to generate the video.",
+          "required": false,
+          "advanced": false,
+          "default": "A tight, gritty close-up on a detective\\'s face in a smoke-filled, neon-drenched office at midnight; he is leaning forward, eyes narrowed with tension, as the camera slowly zooms in, while his low, gravelly voice states, \\\"Where\\'s the evidence?\\\"; this is set against the backdrop of a slow, repetitive ticking clock and the distant wail of a police siren."
+        },
+        {
+          "id": "aspectRatio",
+          "type": "select",
+          "label": "Aspect Ratio",
+          "note": "Aspect ratio of the generated video",
+          "required": false,
+          "advanced": true,
+          "default": "match_input_image",
+          "options": [
+            "16:9",
+            "9:16",
+            "match_input_image"
+          ]
+        },
+        {
+          "id": "resolution",
+          "type": "select",
+          "label": "Resolution",
+          "note": "Resolution of the generated video",
+          "required": false,
+          "advanced": true,
+          "default": "720p",
+          "options": [
+            "720p",
+            "1080p",
+            "4k"
+          ]
+        },
+        {
+          "id": "negativePrompt",
+          "type": "textarea",
+          "label": "Negative Prompt",
+          "note": "A text string that describes anything you want to discourage the model from generating",
+          "required": false,
+          "advanced": true,
+          "default": ""
+        },
+        {
+          "id": "seed",
+          "type": "number",
+          "label": "seed",
+          "note": "A number to make generated videos deterministic. For random result do not send.",
+          "required": false,
+          "advanced": true,
+          "default": "0",
+          "min": 0,
+          "max": 4294967295,
+          "step": 1
+        },
+        {
+          "id": "durationSeconds",
+          "type": "select",
+          "label": "Duration Seconds",
+          "note": "Duration of the generated video in seconds. When using reference images duration is set to 8 by default.",
+          "required": true,
+          "advanced": true,
+          "default": "4",
+          "options": [
+            "4",
+            "6",
+            "8"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroKling3",
+      "display_name": "Wiro Kling 3",
+      "model": "klingai/kling-v3",
+      "kind": "video",
+      "description": "Kling 3.0: 5, 10 or 15 second videos from a prompt or a first and last frame, with optional sound.",
+      "parameters": [
+        {
+          "id": "mode",
+          "type": "select",
+          "label": "Mode",
+          "note": "Video mode. Std 720p, Pro 1080p, 4K native 4K resolution (PRO-level expressiveness).",
+          "required": true,
+          "advanced": false,
+          "default": "std",
+          "options": [
+            "std",
+            "pro",
+            "4k"
+          ]
+        },
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "First Frame",
+          "note": "Optional.",
+          "required": false,
+          "advanced": false,
+          "max_files": 1
+        },
+        {
+          "id": "inputImage2",
+          "type": "combinefileinput",
+          "label": "Last Frame",
+          "note": "Optional. Sound will be off.",
+          "required": false,
+          "advanced": true,
+          "max_files": 1
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "prompt",
+          "note": "The prompt to generate the video.",
+          "required": false,
+          "advanced": false,
+          "default": "A heart-pounding GoPro-style POV shot from the helmet of a kayaker plunging over a massive 30-foot waterfall. The screen is engulfed in chaotic white foam and turquoise water as the kayak hits the bottom. The camera shakes violently, then stabilizes as the paddler clears their eyes and begins a frantic, high-speed paddle through a narrow, rocky canyon. 8k resolution, realistic water physics, and immersive sound-focused visuals."
+        },
+        {
+          "id": "duration",
+          "type": "select",
+          "label": "Duration",
+          "note": "Required. Total duration of the generated video (in seconds)",
+          "required": true,
+          "advanced": true,
+          "default": "5",
+          "options": [
+            "5",
+            "10",
+            "15"
+          ]
+        },
+        {
+          "id": "ratio",
+          "type": "select",
+          "label": "Ratio",
+          "note": "Ratio settings only apply to text-to-video; they are not supported in image-to-video mode.",
+          "required": true,
+          "advanced": true,
+          "default": "16:9",
+          "options": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        {
+          "id": "sound",
+          "type": "select",
+          "label": "Sound",
+          "note": "Optional. Default off. If there is last image then sound will be off.",
+          "required": true,
+          "advanced": true,
+          "default": "off",
+          "options": [
+            "on",
+            "off"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroSeedance1ProFast",
+      "display_name": "Wiro Seedance 1 Pro Fast",
+      "model": "bytedance/seedance-v1-pro-fast",
+      "kind": "video",
+      "description": "ByteDance Seedance 1 Pro Fast: text to video or image to video, 5 or 10 seconds, 480p to 1080p.",
+      "parameters": [
+        {
+          "id": "inputImage",
+          "type": "combinefileinput",
+          "label": "Image",
+          "note": "Required if there is no prompt.",
+          "required": false,
+          "advanced": false,
+          "max_files": 1
+        },
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "Prompt",
+          "note": "Optional for i2v, required for t2v. The prompt to generate the video.",
+          "required": false,
+          "advanced": false,
+          "default": "Cinematic documentary shot. The elderly barber\\'s hands move with careful, precise motions, using the clippers and pink comb to gently trim the seated man\\'s hair. The seated man breathes softly with subtle, natural facial micro-expressions. A few cut hair clippings gently fall onto the white protective cape. Natural lighting, hyper-realistic textures, static camera focusing on the authentic, subtle fluid motion of the haircutting process."
+        },
+        {
+          "id": "resolution",
+          "type": "select",
+          "label": "Resolution",
+          "note": "Required. Video resolution",
+          "required": true,
+          "advanced": true,
+          "default": "480p",
+          "options": [
+            "480p",
+            "720p",
+            "1080p"
+          ]
+        },
+        {
+          "id": "ratio",
+          "type": "select",
+          "label": "Ratio",
+          "note": "Required. Generate video aspect ratio. Adaptive is available for image to video only, if you send adaptive without image it will be set to 16:9 by default",
+          "required": true,
+          "advanced": true,
+          "default": "adaptive",
+          "options": [
+            "adaptive",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16",
+            "21:9"
+          ]
+        },
+        {
+          "id": "duration",
+          "type": "select",
+          "label": "Duration",
+          "note": "Required. Generated video duration in seconds.",
+          "required": true,
+          "advanced": true,
+          "default": "5",
+          "options": [
+            "5",
+            "10"
+          ]
+        },
+        {
+          "id": "watermark",
+          "type": "select",
+          "label": "Watermark",
+          "note": "Optional. Default false. Generate whether the video contains a watermark.",
+          "required": false,
+          "advanced": true,
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        {
+          "id": "seed",
+          "type": "number",
+          "label": "Seed",
+          "note": "Optional. Default random. Seed integer to control the randomness of generated content. Set 0 to random.",
+          "required": false,
+          "advanced": true,
+          "default": "1",
+          "min": 0,
+          "max": 99999999,
+          "step": 1
+        },
+        {
+          "id": "cameraFixed",
+          "type": "select",
+          "label": "Fix camera",
+          "note": "Optional. Default false. Whether to fix the camera position.",
+          "required": false,
+          "advanced": true,
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroElevenV4",
+      "display_name": "Wiro Eleven v4 Text to Speech",
+      "model": "elevenlabs/eleven-v4",
+      "kind": "audio",
+      "description": "ElevenLabs Eleven v4: speech from text, with audio tags like [whispering] or [laughing].",
+      "parameters": [
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "prompt",
+          "note": "Required. Up to 10,000 characters. Supports audio tags like [whispering], [laughing], [shouting], [excited].",
+          "required": true,
+          "advanced": false,
+          "default": "[measured] Every great story begins with a single voice. [softly] Tonight, let that voice be yours."
+        },
+        {
+          "id": "voice",
+          "type": "select",
+          "label": "voice",
+          "note": "Required.",
+          "required": true,
+          "advanced": false,
+          "default": "alice",
+          "options": [
+            "adam",
+            "alice",
+            "bella",
+            "bill",
+            "brian",
+            "callum",
+            "charlie",
+            "chris",
+            "daniel",
+            "eric",
+            "george",
+            "harry",
+            "jessica",
+            "laura",
+            "liam",
+            "lily",
+            "matilda",
+            "river",
+            "roger",
+            "sarah",
+            "will"
+          ]
+        },
+        {
+          "id": "outputFormat",
+          "type": "select",
+          "label": "outputFormat",
+          "note": "Required.",
+          "required": true,
+          "advanced": false,
+          "default": "mp3_44100_128",
+          "options": [
+            "mp3_22050_32",
+            "mp3_44100_32",
+            "mp3_44100_64",
+            "mp3_44100_96",
+            "mp3_44100_128"
+          ]
+        },
+        {
+          "id": "languageCode",
+          "type": "select",
+          "label": "Language",
+          "note": "Optional. Auto lets the model detect the language from the text. Choosing one makes it speak and read numbers and dates in that language.",
+          "required": false,
+          "advanced": false,
+          "default": "auto",
+          "options": [
+            "auto",
+            "af",
+            "am",
+            "ar",
+            "hy",
+            "as",
+            "az",
+            "be",
+            "bn",
+            "bs",
+            "bg",
+            "my",
+            "ca",
+            "zh",
+            "hr",
+            "cs",
+            "da",
+            "nl",
+            "en",
+            "et",
+            "fi",
+            "fr",
+            "ff",
+            "gl",
+            "ka",
+            "de",
+            "el",
+            "gu",
+            "ha",
+            "he",
+            "hi",
+            "hu",
+            "is",
+            "id",
+            "it",
+            "ja",
+            "jv",
+            "kn",
+            "kk",
+            "ko",
+            "ky",
+            "lo",
+            "lv",
+            "ln",
+            "lt",
+            "lg",
+            "lb",
+            "mk",
+            "ms",
+            "ml",
+            "mt",
+            "mi",
+            "mr",
+            "mn",
+            "ne",
+            "no",
+            "oc",
+            "or",
+            "ps",
+            "fa",
+            "pl",
+            "pt",
+            "pa",
+            "ro",
+            "ru",
+            "sr",
+            "sn",
+            "sd",
+            "sk",
+            "sl",
+            "so",
+            "es",
+            "sw",
+            "sv",
+            "tg",
+            "ta",
+            "te",
+            "th",
+            "tr",
+            "uk",
+            "ur",
+            "uz",
+            "vi",
+            "cy",
+            "wo",
+            "zu"
+          ]
+        },
+        {
+          "id": "applyTextNormalization",
+          "type": "select",
+          "label": "Text Normalization",
+          "note": "Optional. Spells out numbers, dates and abbreviations before speaking them, e.g. \"3/4\" becomes \"three quarters\". Auto lets the model decide.",
+          "required": false,
+          "advanced": true,
+          "default": "auto",
+          "options": [
+            "auto",
+            "on",
+            "off"
+          ]
+        },
+        {
+          "id": "stability",
+          "type": "float",
+          "label": "Stability",
+          "note": "Optional. Controls how consistent the delivery is. Lower values are more expressive, higher values keep a steadier delivery.",
+          "required": false,
+          "advanced": true,
+          "default": "0.5",
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "id": "similarityBoost",
+          "type": "float",
+          "label": "Similarity",
+          "note": "Optional. How closely the output follows the reference voice. Higher values match it more closely but can sound less natural.",
+          "required": false,
+          "advanced": true,
+          "default": "0.75",
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "node": "WiroElevenMusic2",
+      "display_name": "Wiro ElevenLabs Music v2",
+      "model": "elevenlabs/text-to-music-v2",
+      "kind": "audio",
+      "description": "ElevenLabs Music v2: a music track from a text brief, 10 to 70 seconds, with or without vocals.",
+      "parameters": [
+        {
+          "id": "prompt",
+          "type": "textarea",
+          "label": "prompt",
+          "note": "Required. Describe the music you want. Mention genre, instruments, mood and tempo, and the structure if you have one in mind.",
+          "required": true,
+          "advanced": false,
+          "default": "Lofi hip hop with warm rhodes chords, a soft dusty drum loop and light vinyl crackle, relaxed and nostalgic"
+        },
+        {
+          "id": "outputFormat",
+          "type": "select",
+          "label": "outputFormat",
+          "note": "Required.",
+          "required": true,
+          "advanced": false,
+          "default": "mp3_44100_128",
+          "options": [
+            "mp3_22050_32",
+            "mp3_44100_32",
+            "mp3_44100_64",
+            "mp3_44100_96",
+            "mp3_44100_128"
+          ]
+        },
+        {
+          "id": "duration",
+          "type": "select",
+          "label": "Duration",
+          "note": "Required. Length of the track.",
+          "required": true,
+          "advanced": false,
+          "default": "30",
+          "options": [
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "70",
+            "80",
+            "90",
+            "100",
+            "110",
+            "120",
+            "130",
+            "140",
+            "150",
+            "160",
+            "170",
+            "180",
+            "190",
+            "200",
+            "210",
+            "220",
+            "230",
+            "240",
+            "250",
+            "260",
+            "270",
+            "280",
+            "290",
+            "300"
+          ]
+        },
+        {
+          "id": "instrumental",
+          "type": "select",
+          "label": "Instrumental",
+          "note": "Optional. Forces a track with no vocals. Set false to let the prompt decide whether the song is sung.",
+          "required": false,
+          "advanced": true,
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      ]
+    },
+    {
+      "node": "WiroElevenSpeechToText",
+      "display_name": "Wiro ElevenLabs Speech to Text",
+      "model": "elevenlabs/speech-to-text",
+      "kind": "text",
+      "description": "ElevenLabs Scribe: transcribes speech to punctuated text and detects the language.",
+      "parameters": [
+        {
+          "id": "inputAudio",
+          "type": "fileinput",
+          "label": "input-audio",
+          "note": "input-audio-help",
+          "required": true,
+          "advanced": false,
+          "max_files": null
+        }
+      ]
+    }
+  ]
+}

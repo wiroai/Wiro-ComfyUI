@@ -1,0 +1,39 @@
+name: Publish to Comfy Registry
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "pyproject.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  publish-node:
+    name: Publish custom node to the registry
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'wiroai' }}
+    steps:
+      - name: Check for the registry token
+        id: token
+        env:
+          REGISTRY_ACCESS_TOKEN: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+        run: |
+          if [ -n "$REGISTRY_ACCESS_TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::REGISTRY_ACCESS_TOKEN is not set yet, skipping the publish."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Check out code
+        if: ${{ steps.token.outputs.present == 'true' }}
+        uses: actions/checkout@v7
+      - name: Publish custom node
+        if: ${{ steps.token.outputs.present == 'true' }}
+        uses: Comfy-Org/publish-node-action@d2366e7abb6ab16f3bb03e3520ae25c8cf749bc9
+        with:
+          personal_access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          skip_checkout: "true"

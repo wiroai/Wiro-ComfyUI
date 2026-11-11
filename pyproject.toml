@@ -1,0 +1,23 @@
+[project]
+name = "comfyui-wiro"
+description = "Run Wiro AI models in ComfyUI: one node for any of the 1,000+ image, video, audio and LLM models in the Wiro AI catalog, plus nodes for Nano Banana Pro, GPT Image 2, Seedream, Veo 3.1, Kling 3, Seedance and ElevenLabs. Results come back as native IMAGE, VIDEO, AUDIO and text."
+version = "1.0.0"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["requests"]
+classifiers = ["Operating System :: OS Independent"]
+
+[project.urls]
+Repository = "https://github.com/wiroai/Wiro-ComfyUI"
+Homepage = "https://wiro.ai"
+Documentation = "https://wiro.ai/docs"
+"Bug Tracker" = "https://github.com/wiroai/Wiro-ComfyUI/issues"
+
+[tool.comfy]
+PublisherId = "wiroai"
+DisplayName = "Wiro AI"
+Icon = "https://raw.githubusercontent.com/wiroai/Wiro-ComfyUI/main/.github/assets/icon.png"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
