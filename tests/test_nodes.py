@@ -7,6 +7,7 @@ import torch
 from wiro_comfyui import keystore, media, nodes, runner
 from wiro_comfyui.client import WiroCredentials, WiroError
 from wiro_comfyui.version import __version__
+from helpers import blocked
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KEY = "node-test-key-0123456789"
@@ -18,18 +19,26 @@ def test_version_matches_pyproject():
     assert match and match.group(1) == __version__
 
 
+V1_NODES = {
+    "WiroApiKey", "WiroRunModel", "WiroNanoBananaPro", "WiroNanoBanana2", "WiroGPTImage2",
+    "WiroSeedream45", "WiroVeo31", "WiroKling3", "WiroSeedance1ProFast", "WiroElevenV4",
+    "WiroElevenMusic2", "WiroElevenSpeechToText", "WiroLLM", "WiroRunWorkflow",
+}
+
+
 def test_node_mappings():
-    expected = {
-        "WiroApiKey", "WiroRunModel", "WiroNanoBananaPro", "WiroNanoBanana2", "WiroGPTImage2",
-        "WiroSeedream45", "WiroVeo31", "WiroKling3", "WiroSeedance1ProFast", "WiroElevenV4",
-        "WiroElevenMusic2", "WiroElevenSpeechToText",
-    }
-    assert set(nodes.NODE_CLASS_MAPPINGS) == expected
-    assert set(nodes.NODE_DISPLAY_NAME_MAPPINGS) == expected
+    from wiro_comfyui.roles import CATEGORY_SPECS
+
+    category = {spec["node"] for spec in CATEGORY_SPECS}
+    names = set(nodes.NODE_CLASS_MAPPINGS)
+    assert V1_NODES <= names
+    # Category nodes need ComfyUI's V3 node API: all of them or none.
+    assert names - V1_NODES in (set(), category)
+    assert set(nodes.NODE_DISPLAY_NAME_MAPPINGS) == names
     assert all(name.startswith("Wiro ") for name in nodes.NODE_DISPLAY_NAME_MAPPINGS.values())
 
 
-@pytest.mark.parametrize("name", sorted(nodes.NODE_CLASS_MAPPINGS))
+@pytest.mark.parametrize("name", sorted(V1_NODES))
 def test_input_specs_are_valid(name):
     cls = nodes.NODE_CLASS_MAPPINGS[name]
     spec = cls.INPUT_TYPES()
@@ -79,6 +88,9 @@ def test_wiro_value():
     assert nodes.wiro_value({"id": "seed", "type": "number"}, 0) is None
     assert nodes.wiro_value({"id": "seed", "type": "number"}, 42) == 42
     assert nodes.wiro_value({"id": "diarization", "type": "checkbox"}, False) == "false"
+    assert nodes.wiro_value({"id": "diarization", "type": "checkbox", "default": "true"}, True) == "true"
+    flag = {"id": "face_enhance", "type": "checkbox", "default": "--face_enhance"}
+    assert nodes.wiro_value(flag, True) == "--face_enhance" and nodes.wiro_value(flag, False) is None
     assert nodes.wiro_value({"id": "aspectRatio", "type": "select"}, "") is None
     assert nodes.wiro_value({"id": "ratio", "type": "select", "required": True}, "") == ""
     assert nodes.wiro_value({"id": "prompt", "type": "textarea"}, "fox") == "fox"
@@ -155,10 +167,12 @@ def test_run_model_node_image(monkeypatch, fake_session, png_bytes):
     monkeypatch.setattr(media, "download", lambda url: png_bytes)
     monkeypatch.setenv("WIRO_API_KEY", KEY)
 
-    images, video, audio, text, urls = nodes.WiroRunModel().run(
+    out = nodes.WiroRunModel().run(
         model="openai/gpt-image-2", prompt="a red fox", parameters='{"quality": "low"}')
+    assert out["ui"] == {"wiro_task": ["77"], "wiro_cost": ["0.006000"]}
+    images, video, audio, text, urls = out["result"]
     assert images.shape == (1, 6, 8, 3)
-    assert video is None and audio is None  # ExecutionBlocker outside ComfyUI
+    assert blocked(video) and blocked(audio)
     assert text == "" and urls == "https://cdn1.wiro.ai/x/0.png"
     run_call = fake_run_route(wiro.session)
     # samples is required on the model and was left out, so its default is sent.
@@ -181,9 +195,9 @@ def test_run_model_node_uploads_image_to_detected_field(monkeypatch, fake_sessio
     first, last = torch.rand(1, 4, 4, 3), torch.rand(1, 4, 4, 3)
     images, video, audio, text, urls = nodes.WiroRunModel().run(
         model="klingai/kling-v3", prompt="", parameters='{"mode": "std"}',
-        wiro_auth=WiroCredentials(KEY), image=first, image_2=last)
+        wiro_auth=WiroCredentials(KEY), image=first, image_2=last)["result"]
     assert video == "VIDEO" and videos == [(b"mp4-bytes", "0.mp4")]
-    assert images is None
+    assert blocked(images)
     run_call = fake_run_route(wiro.session)
     assert run_call["data"] == [("mode", "std")]
     assert [f[0] for f in run_call["files"]] == ["inputImage", "inputImage2"]
@@ -206,7 +220,7 @@ def test_model_node_request(monkeypatch, fake_session, png_bytes):
     spec = cls.INPUT_TYPES()
     widgets = {name: options.get("default") for name, (_, options) in spec["required"].items()}
     widgets["prompt"] = "a lighthouse"
-    images, urls = cls().run(wiro_auth=WiroCredentials(KEY), **widgets)
+    images, urls = cls().run(wiro_auth=WiroCredentials(KEY), **widgets)["result"]
     assert images.shape[0] == 1
     body = fake_run_route(wiro.session)["json"]
     assert body["prompt"] == "a lighthouse"

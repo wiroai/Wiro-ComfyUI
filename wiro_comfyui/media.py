@@ -28,6 +28,7 @@ IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".tif", ".
 VIDEO_EXTENSIONS = {".mp4", ".webm", ".mov", ".mkv", ".avi", ".m4v"}
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".flac", ".ogg", ".m4a", ".aac", ".opus"}
 TEXT_EXTENSIONS = {".txt", ".json", ".srt", ".vtt", ".md", ".csv"}
+MODEL_EXTENSIONS = {".glb", ".gltf", ".obj", ".fbx", ".stl", ".ply", ".usdz"}
 
 _DOWNLOAD_TIMEOUT = (15, 600)
 _MAX_TEXT_BYTES = 2 * 1024 * 1024
@@ -114,16 +115,18 @@ def video_to_mp4(video: Any) -> bytes:
 
 
 def media_kind(content_type: str, name: str) -> str:
-    """image, video, audio, text, raw or other."""
+    """image, video, audio, text, 3d, raw or other."""
     ctype = (content_type or "").lower().split(";")[0].strip()
+    ext = os.path.splitext(urlparse(name or "").path)[1].lower()
     if ctype == "raw":
         return "raw"
+    if ctype.startswith("model/") or ext in MODEL_EXTENSIONS:
+        return "3d"
     for prefix in ("image", "video", "audio"):
         if ctype.startswith(prefix + "/"):
             return prefix
     if ctype.startswith("text/") or ctype == "application/json":
         return "text"
-    ext = os.path.splitext(urlparse(name or "").path)[1].lower()
     if ext in IMAGE_EXTENSIONS:
         return "image"
     if ext in VIDEO_EXTENSIONS:
@@ -171,6 +174,42 @@ def decode_images(blobs: list[bytes]) -> torch.Tensor:
         array = np.asarray(picture).astype(np.float32) / 255.0
         tensors.append(torch.from_numpy(array))
     return torch.stack(tensors, dim=0)
+
+
+def decode_images_with_alpha(blobs: list) -> tuple:
+    """(IMAGE batch, MASK batch) from images with transparency. The mask is
+    the alpha channel: 1 where the subject is, 0 where the background was."""
+    pictures = []
+    for blob in blobs:
+        picture = ImageOps.exif_transpose(Image.open(io.BytesIO(blob)))
+        pictures.append(picture.convert("RGBA"))
+    if not pictures:
+        raise WiroError("No images to decode.")
+    size = pictures[0].size
+    rgb, alpha = [], []
+    for picture in pictures:
+        if picture.size != size:
+            picture = picture.resize(size, Image.LANCZOS)
+        array = np.asarray(picture).astype(np.float32) / 255.0
+        rgb.append(torch.from_numpy(array[..., :3].copy()))
+        alpha.append(torch.from_numpy(array[..., 3].copy()))
+    return torch.stack(rgb, dim=0), torch.stack(alpha, dim=0)
+
+
+def file3d_from_bytes(blob: bytes, name: str = "model.glb") -> Any:
+    """A ComfyUI 3D file value (File3D) saved in ComfyUI's temp folder."""
+    ext = os.path.splitext(urlparse(name).path)[1].lower() or ".glb"
+    if ext not in MODEL_EXTENSIONS:
+        ext = ".glb"
+    path = os.path.join(_temp_dir(), f"wiro-{uuid.uuid4().hex}{ext}")
+    with open(path, "wb") as handle:
+        handle.write(blob)
+    try:
+        from comfy_api.latest import Types
+
+        return Types.File3D(path, ext.lstrip("."))
+    except (ImportError, AttributeError):
+        raise WiroError("This ComfyUI version has no 3D file type. Update ComfyUI, or use the urls output.") from None
 
 
 def decode_audio(blob: bytes) -> dict:

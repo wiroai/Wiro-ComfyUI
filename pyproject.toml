@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-wiro"
-description = "Run Wiro AI models in ComfyUI: one node for any of the 1,000+ image, video, audio and LLM models in the Wiro AI catalog, plus nodes for Nano Banana Pro, GPT Image 2, Seedream, Veo 3.1, Kling 3, Seedance and ElevenLabs. Results come back as native IMAGE, VIDEO, AUDIO and text."
-version = "1.0.0"
+description = "Run Wiro AI models in ComfyUI: category nodes with model menus from the Wiro AI catalog of 1,000+ models (text to image, image edit, upscale, background removal, text and image to video, video upscale, lipsync, text to speech, music, speech to text, 3D), an LLM node, Wiro workflow runs and the price of each run on the node, plus nodes for Nano Banana Pro, GPT Image 2, Seedream, Veo 3.1, Kling 3, Seedance and ElevenLabs. Results come back as native IMAGE, MASK, VIDEO, AUDIO, 3D and text."
+version = "1.1.0"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 dependencies = ["requests"]

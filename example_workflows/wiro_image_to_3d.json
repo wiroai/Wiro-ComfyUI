@@ -1,0 +1,603 @@
+{
+  "id": "9a7950b2-bc35-4750-a32a-788d1ddb887d",
+  "revision": 0,
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "WiroTextToImage",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        219.142578125,
+        392
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "wiro_auth",
+          "name": "wiro_auth",
+          "shape": 7,
+          "type": "WIRO_AUTH",
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "model"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "model.resolution",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.resolution"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ratio",
+          "name": "model.ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.ratio"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "quality",
+          "name": "model.quality",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.quality"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "background",
+          "name": "model.background",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.background"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "output_format",
+          "name": "model.output_format",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.output_format"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "output_compression",
+          "name": "model.output_compression",
+          "type": "INT",
+          "widget": {
+            "name": "model.output_compression"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "samples",
+          "name": "model.samples",
+          "type": "INT",
+          "widget": {
+            "name": "model.samples"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "moderation",
+          "name": "model.moderation",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.moderation"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "input_image",
+          "name": "model.input_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "input_image_mask",
+          "name": "model.input_image_mask",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "timeout",
+          "name": "timeout",
+          "type": "INT",
+          "widget": {
+            "name": "timeout"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "force_rerun",
+          "name": "force_rerun",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_rerun"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            1
+          ]
+        },
+        {
+          "localized_name": "urls",
+          "name": "urls",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WiroTextToImage"
+      },
+      "widgets_values": [
+        "A ceramic teapot with a deep blue glaze, studio product photo, plain white background",
+        "openai/gpt-image-2",
+        "1k",
+        "1:1",
+        "low",
+        "auto",
+        "png",
+        100,
+        1,
+        "low",
+        1800,
+        false
+      ],
+      "widgets_values_named": {
+        "prompt": "A ceramic teapot with a deep blue glaze, studio product photo, plain white background",
+        "model": "openai/gpt-image-2",
+        "model.resolution": "1k",
+        "model.ratio": "1:1",
+        "model.quality": "low",
+        "model.background": "auto",
+        "model.output_format": "png",
+        "model.output_compression": 100,
+        "model.samples": 1,
+        "model.moderation": "low",
+        "timeout": 1800,
+        "force_rerun": false
+      }
+    },
+    {
+      "id": 2,
+      "type": "Wiro3D",
+      "pos": [
+        480,
+        40
+      ],
+      "size": [
+        248.890625,
+        510
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 1
+        },
+        {
+          "localized_name": "wiro_auth",
+          "name": "wiro_auth",
+          "shape": 7,
+          "type": "WIRO_AUTH",
+          "link": null
+        },
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "model"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "pipeline_type",
+          "name": "model.pipeline_type",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.pipeline_type"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "seed",
+          "name": "model.seed",
+          "type": "STRING",
+          "widget": {
+            "name": "model.seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "texture_size",
+          "name": "model.texture_size",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.texture_size"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "decimation_target",
+          "name": "model.decimation_target",
+          "type": "INT",
+          "widget": {
+            "name": "model.decimation_target"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ss_steps",
+          "name": "model.ss_steps",
+          "type": "INT",
+          "widget": {
+            "name": "model.ss_steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ss_guidance_strength",
+          "name": "model.ss_guidance_strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.ss_guidance_strength"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ss_guidance_rescale",
+          "name": "model.ss_guidance_rescale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.ss_guidance_rescale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ss_rescale_t",
+          "name": "model.ss_rescale_t",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.ss_rescale_t"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "shape_steps",
+          "name": "model.shape_steps",
+          "type": "INT",
+          "widget": {
+            "name": "model.shape_steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "shape_guidance_strength",
+          "name": "model.shape_guidance_strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.shape_guidance_strength"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "shape_guidance_rescale",
+          "name": "model.shape_guidance_rescale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.shape_guidance_rescale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "shape_rescale_t",
+          "name": "model.shape_rescale_t",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.shape_rescale_t"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "tex_steps",
+          "name": "model.tex_steps",
+          "type": "INT",
+          "widget": {
+            "name": "model.tex_steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "tex_guidance_strength",
+          "name": "model.tex_guidance_strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.tex_guidance_strength"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "tex_guidance_rescale",
+          "name": "model.tex_guidance_rescale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.tex_guidance_rescale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "tex_rescale_t",
+          "name": "model.tex_rescale_t",
+          "type": "FLOAT",
+          "widget": {
+            "name": "model.tex_rescale_t"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "timeout",
+          "name": "timeout",
+          "type": "INT",
+          "widget": {
+            "name": "timeout"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "force_rerun",
+          "name": "force_rerun",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_rerun"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "GLB",
+          "name": "GLB",
+          "type": "FILE_3D_GLB",
+          "links": [
+            2
+          ]
+        },
+        {
+          "localized_name": "urls",
+          "name": "urls",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Wiro3D"
+      },
+      "widgets_values": [
+        "microsoft/trellis-2",
+        "512",
+        "",
+        "1024",
+        1000000,
+        12,
+        7.5,
+        0.7,
+        5,
+        12,
+        7.5,
+        0.5,
+        3,
+        12,
+        1,
+        0,
+        3,
+        1800,
+        false
+      ],
+      "widgets_values_named": {
+        "model": "microsoft/trellis-2",
+        "model.pipeline_type": "512",
+        "model.seed": "",
+        "model.texture_size": "1024",
+        "model.decimation_target": 1000000,
+        "model.ss_steps": 12,
+        "model.ss_guidance_strength": 7.5,
+        "model.ss_guidance_rescale": 0.7,
+        "model.ss_rescale_t": 5,
+        "model.shape_steps": 12,
+        "model.shape_guidance_strength": 7.5,
+        "model.shape_guidance_rescale": 0.5,
+        "model.shape_rescale_t": 3,
+        "model.tex_steps": 12,
+        "model.tex_guidance_strength": 1,
+        "model.tex_guidance_rescale": 0,
+        "model.tex_rescale_t": 3,
+        "timeout": 1800,
+        "force_rerun": false
+      }
+    },
+    {
+      "id": 3,
+      "type": "Preview3DAdvanced",
+      "pos": [
+        920,
+        40
+      ],
+      "size": [
+        520,
+        560
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model_3d",
+          "name": "model_3d",
+          "type": "FILE_3D_GLB,FILE_3D_GLTF,FILE_3D_FBX,FILE_3D_OBJ,FILE_3D_STL,FILE_3D_USDZ,FILE_3D",
+          "link": 2
+        },
+        {
+          "localized_name": "model_3d_info",
+          "name": "model_3d_info",
+          "shape": 7,
+          "type": "LOAD3D_MODEL_INFO",
+          "link": null
+        },
+        {
+          "localized_name": "camera_info",
+          "name": "camera_info",
+          "shape": 7,
+          "type": "LOAD3D_CAMERA",
+          "link": null
+        },
+        {
+          "localized_name": "viewport_state",
+          "name": "viewport_state",
+          "type": "LOAD_3D",
+          "widget": {
+            "name": "viewport_state"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "model_3d",
+          "name": "model_3d",
+          "type": "FILE_3D",
+          "links": null
+        },
+        {
+          "localized_name": "model_3d_info",
+          "name": "model_3d_info",
+          "type": "LOAD3D_MODEL_INFO",
+          "links": null
+        },
+        {
+          "localized_name": "camera_info",
+          "name": "camera_info",
+          "type": "LOAD3D_CAMERA",
+          "links": null
+        },
+        {
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Preview3DAdvanced"
+      },
+      "widgets_values": [
+        "",
+        1024,
+        1024
+      ],
+      "widgets_values_named": {
+        "viewport_state": "",
+        "width": 1024,
+        "height": 1024
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "FILE_3D_GLB"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9494485116575557,
+      "offset": [
+        144.81510416666663,
+        129.4453125
+      ]
+    }
+  },
+  "version": 0.4
+}

@@ -192,6 +192,15 @@ def result_audio(result: TaskResult):
     return media.decode_audio(media.download(files[0].url))
 
 
+def result_3d(result: TaskResult):
+    files = result.of_kind("3d")
+    if not files:
+        return None
+    glb = [f for f in files if f.name.lower().endswith(".glb") or f.url.lower().split("?")[0].endswith(".glb")]
+    first = (glb or files)[0]
+    return media.file3d_from_bytes(media.download(first.url), first.name or first.url)
+
+
 def result_text(result: TaskResult) -> str:
     """LLM answer, else the content of text files, else the task's text output
     when the model returned no files at all (some speech models print text)."""

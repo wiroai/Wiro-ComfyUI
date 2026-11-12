@@ -41,4 +41,23 @@ def register() -> None:
             return web.json_response({"error": str(exc)}, status=400)
         return web.json_response({"ref": ref})
 
+    @instance.routes.get("/wiro/prices")
+    async def prices(request):
+        """Price tables for the browser extension's price display (public catalog data)."""
+        from . import catalog
+        from .nodes import FIXED_NODE_MODELS
+
+        return web.json_response(price_tables(catalog.models(), catalog.llm_models(), FIXED_NODE_MODELS))
+
     _registered = True
+
+
+def price_tables(models: list, llm_models: list, fixed: dict) -> dict:
+    return {
+        "models": {
+            m["slug"]: {"price": m.get("price") or [], "cps": m.get("cps"), "approx": m.get("approx")}
+            for m in models
+        },
+        "llm": {m["id"]: {"prompt": m.get("prompt"), "completion": m.get("completion")} for m in llm_models},
+        "fixed": dict(fixed),
+    }

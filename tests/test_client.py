@@ -234,6 +234,10 @@ def test_ensure_success():
         ensure_success({"id": "5", "status": "task_postprocess_end", "pexit": "1", "debugerror": "CUDA out of memory"})
     with pytest.raises(WiroError, match="cancelled"):
         ensure_success({"id": "5", "status": "task_cancel", "pexit": "0"})
+    partner = {"id": "6", "pexit": "1", "debugerror": "",
+               "debugoutput": "Request started.\nTask failed\nThis model is busy right now. You were not charged.\n"}
+    with pytest.raises(WiroError, match=r"exit code 1\)\. This model is busy right now\. You were not charged\.$"):
+        ensure_success(partner)
     long = "x" * 5000 + "END"
     with pytest.raises(WiroError) as info:
         ensure_success({"id": "5", "pexit": "2", "debugerror": long})

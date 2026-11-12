@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import json
 import os
-import re
 import time
 from typing import Any
 
@@ -20,6 +19,7 @@ from .client import (
     resolve_credentials,
 )
 from .payload import parse_parameters, pick_file_field
+from .widgets import display_name, wiro_value
 
 CATEGORY = "Wiro AI"
 AUTH_TYPE = "WIRO_AUTH"
@@ -208,13 +208,22 @@ class WiroRunModel:
         images = runner.result_images(result)
         video_out = runner.result_video(result)
         audio_out = runner.result_audio(result)
-        return (
+        outputs = (
             images if images is not None else runner.blocker(f"{slug} returned no image ({summary})."),
             video_out if video_out is not None else runner.blocker(f"{slug} returned no video ({summary})."),
             audio_out if audio_out is not None else runner.blocker(f"{slug} returned no audio ({summary})."),
             runner.result_text(result),
             "\n".join(result.urls),
         )
+        return {"ui": cost_ui(result), "result": outputs}
+
+
+def cost_ui(result) -> dict:
+    """UI data the browser extension uses to show what the run cost."""
+    ui = {"wiro_task": [result.task_id]}
+    if result.cost is not None:
+        ui["wiro_cost"] = [f"{result.cost:.6f}"]
+    return ui
 
 
 def _single(file_params, field) -> bool:
@@ -244,24 +253,6 @@ def _file_socket(param_id: str) -> str:
 
 def _is_int(*values) -> bool:
     return all(v is None or (isinstance(v, (int, float)) and float(v).is_integer()) for v in values)
-
-
-_CAMEL_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
-
-
-def display_name(param: dict):
-    """Lowercase label for a widget, from Wiro's label or the parameter id.
-
-    Some Wiro labels are ids or translation keys ("outputFormat",
-    "input-audio"); those are rebuilt from the id ("output format").
-    Returns None when the label would just repeat the id.
-    """
-    pid = param["id"]
-    label = (param.get("label") or "").strip()
-    if not label or (" " not in label and ("-" in label or label[0].islower())):
-        label = _CAMEL_BOUNDARY.sub(" ", pid)
-    label = " ".join(label.lower().split())
-    return None if label == pid.lower() else label
 
 
 def widget_for(param: dict):
@@ -316,20 +307,6 @@ def widget_for(param: dict):
     options["multiline"] = multiline
     options["default"] = "" if pid == "prompt" else str(default or "")
     return ("STRING", options)
-
-
-def wiro_value(param: dict, value: Any):
-    """Value to send for a widget, or None to leave the parameter out."""
-    ptype = param["type"]
-    if ptype == "checkbox":
-        return "true" if value else "false"
-    if ptype in ("number", "float", "range"):
-        if param["id"] == "seed" and not value:
-            return None
-        return value
-    if isinstance(value, str) and value == "" and not param.get("required"):
-        return None
-    return value
 
 
 def make_model_node(spec: dict):
@@ -394,7 +371,7 @@ def make_model_node(spec: dict):
             main = runner.result_text(result)
         if main is None or (kind == "text" and not main and not result.files):
             raise WiroError(f"{model} finished but returned no {kind} ({result.summary()}).")
-        return (main, "\n".join(result.urls))
+        return {"ui": cost_ui(result), "result": (main, "\n".join(result.urls))}
 
     description = (
         f"{spec['description']} Runs {model} on Wiro AI; each run is billed to your Wiro AI "
@@ -430,3 +407,17 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 for _spec in load_model_specs():
     NODE_CLASS_MAPPINGS[_spec["node"]] = make_model_node(_spec)
     NODE_DISPLAY_NAME_MAPPINGS[_spec["node"]] = _spec["display_name"]
+
+# Fixed model nodes: node id -> model slug (for the price display).
+FIXED_NODE_MODELS = {spec["node"]: spec["model"] for spec in load_model_specs()}
+
+from .extra_nodes import WiroLLM, WiroRunWorkflow  # noqa: E402
+
+NODE_CLASS_MAPPINGS.update({"WiroLLM": WiroLLM, "WiroRunWorkflow": WiroRunWorkflow})
+NODE_DISPLAY_NAME_MAPPINGS.update({"WiroLLM": "Wiro LLM", "WiroRunWorkflow": "Wiro Run Workflow"})
+
+from .category_nodes import build_nodes as _build_category_nodes  # noqa: E402
+
+_category_classes, _category_names = _build_category_nodes()
+NODE_CLASS_MAPPINGS.update(_category_classes)
+NODE_DISPLAY_NAME_MAPPINGS.update(_category_names)

@@ -1,0 +1,982 @@
+[
+ {
+  "id": "bytedance/seed-v2-1-turbo",
+  "name": "(Wiro) Seed v2.1 Turbo (Seed 2.1 Turbo)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 5e-07,
+  "completion": 2.5e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "bytedance/seed-v2-lite",
+  "name": "(Wiro) Seed V2 Lite LLM",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2.5e-07,
+  "completion": 2e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "bytedance/seed-v2-mini",
+  "name": "(Wiro) Seed-V2 Mini LLM",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1e-07,
+  "completion": 4e-07,
+  "max_tokens": 65536
+ },
+ {
+  "id": "bytedance/seed-v2-pro",
+  "name": "(Wiro) Seed V2 Pro (ByteDance) Multimodal LLM",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 5e-07,
+  "completion": 3e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "claude/fable-5",
+  "name": "(Wiro) Claude Fable 5 Long-Context Reasoning",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1e-05,
+  "completion": 5e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "claude/fable-5-1",
+  "name": "(Wiro) Claude Fable 5.1 Long-Context Reasoning",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1e-05,
+  "completion": 5e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "claude/fable-5-2",
+  "name": "(Wiro) Claude Fable 5.2 Text Reasoning Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 8e-06,
+  "completion": 4e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "claude/opus-5",
+  "name": "(Wiro) Claude Opus 5 (opus-5) Text Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 5e-06,
+  "completion": 2.5e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "claude/opus-5-5",
+  "name": "(Wiro) Claude Opus 5.5 (1M-context) Text Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 4e-06,
+  "completion": 2e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "claude/sonnet-5",
+  "name": "(Wiro) Claude Sonnet 5 for Coding and PDF Q&A",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "deepseek/v4-1-flash",
+  "name": "(Wiro) DeepSeek V4.1 Flash (Text + Vision)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 3e-07,
+  "completion": 1.2e-06,
+  "max_tokens": 384000
+ },
+ {
+  "id": "deepseek/v4-1-flash-economy",
+  "name": "(Wiro) DeepSeek V4.1 Flash Economy",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2.4e-07,
+  "completion": 9.6e-07,
+  "max_tokens": 384000
+ },
+ {
+  "id": "deepseek/v4-flash",
+  "name": "(Wiro) DeepSeek V4 Flash (v4-flash)",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 4.4e-07,
+  "completion": 1.32e-06,
+  "max_tokens": 384000
+ },
+ {
+  "id": "deepseek/v4-pro",
+  "name": "(Wiro) DeepSeek V4 Pro (v4-pro) Text Model",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1.32e-06,
+  "completion": 3.96e-06,
+  "max_tokens": 384000
+ },
+ {
+  "id": "glm/5-2",
+  "name": "(Wiro) GLM 5.2 Long-Context Coding LLM",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1.4e-06,
+  "completion": 4.4e-06,
+  "max_tokens": 128000
+ },
+ {
+  "id": "glm/5-3",
+  "name": "(Wiro) GLM 5.3 Text Model for Coding Agents",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1.5e-07,
+  "completion": 5e-07,
+  "max_tokens": 128000
+ },
+ {
+  "id": "google/gemini-2-5-flash",
+  "name": "(Wiro) Gemini 2.5 Flash",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 3e-07,
+  "completion": 2.5e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-5-flash",
+  "name": "(Wiro) Gemini 3.5 Flash by Google",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1.5e-06,
+  "completion": 9e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-5-flash-lite",
+  "name": "(Wiro) Gemini 3.5 Flash-Lite (Google)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 3e-07,
+  "completion": 2.5e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-6-flash",
+  "name": "(Wiro) Gemini 3.6 Flash by Google",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1.5e-06,
+  "completion": 7.5e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-7-flash",
+  "name": "(Wiro) Gemini 3.7 Flash (Google)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 7.5e-07,
+  "completion": 3.75e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-8-flash",
+  "name": "(Wiro) Gemini 3.8 Flash (Google) Text Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 7.5e-07,
+  "completion": 3.75e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-flash",
+  "name": "(Wiro) Gemini 3 Flash",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 5e-07,
+  "completion": 3e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-3-pro",
+  "name": "(Wiro) Gemini 3 Pro - Google AI Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1.2e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-4-argon",
+  "name": "(Wiro) Gemini 4 Argon by Google",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "google/gemini-4-carbon",
+  "name": "(Wiro) Gemini 4 Carbon by Google",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 65536
+ },
+ {
+  "id": "meta-llama/llama-3-2-3b-instruct",
+  "name": "(Wiro) Llama 3.2 3B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "mistralai/mistral-7b-instruct-v0-3",
+  "name": "(Wiro) Mistral 7B Instruct v0.3",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "mistralai/mistral-nemo-instruct-2407",
+  "name": "(Wiro) Mistral Nemo Instruct 2407",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "moonshot/kimi-k3-1-pro",
+  "name": "(Wiro) Kimi K3.1 Pro by Moonshot (1M context)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1e-05,
+  "max_tokens": 1048576
+ },
+ {
+  "id": "openai/gpt-5-2",
+  "name": "(Wiro) GPT-5.2 AI Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1.75e-06,
+  "completion": 1.4e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-4",
+  "name": "(Wiro) GPT-5.4 Image Understanding & Reasoning",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2.5e-06,
+  "completion": 1.5e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-4-mini",
+  "name": "(Wiro) OpenAI GPT-5.4 Mini Text + Vision",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 7.5e-07,
+  "completion": 4.5e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-4-nano",
+  "name": "(Wiro) GPT-5.4 Nano (OpenAI)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-07,
+  "completion": 1.25e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-5",
+  "name": "(Wiro) OpenAI GPT-5.5 (Text + Vision)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 5e-06,
+  "completion": 3e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-6-luna",
+  "name": "(Wiro) GPT 5.6 Luna Vision Chat by OpenAI",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-07,
+  "completion": 1.2e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-6-sol",
+  "name": "(Wiro) GPT 5.6 Sol by OpenAI (Vision)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 4e-06,
+  "completion": 2e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-6-terra",
+  "name": "(Wiro) GPT 5.6 Terra Vision & Text Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1.2e-05,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-mini",
+  "name": "(Wiro) GPT-5 Mini AI Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2.5e-07,
+  "completion": 2e-06,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-5-nano",
+  "name": "(Wiro) GPT-5 Nano AI Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 5e-08,
+  "completion": 4e-07,
+  "max_tokens": 65536
+ },
+ {
+  "id": "openai/gpt-6-1-sol",
+  "name": "(Wiro) OpenAI GPT-6.1 Sol (Vision Reasoning)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "openai/gpt-6-1-terra",
+  "name": "(Wiro) OpenAI GPT-6.1 Terra",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1e-06,
+  "completion": 5e-06,
+  "max_tokens": 128000
+ },
+ {
+  "id": "openai/gpt-6-astra",
+  "name": "(Wiro) GPT 6 Astra by OpenAI (Text + Vision)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1e-05,
+  "completion": 5e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "openai/gpt-6-luna",
+  "name": "(Wiro) GPT-6 Luna by OpenAI (Text + Vision)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 1e-07,
+  "completion": 5e-07,
+  "max_tokens": 128000
+ },
+ {
+  "id": "openai/gpt-6-sol",
+  "name": "(Wiro) GPT-6 Sol Vision Reasoning (OpenAI)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": 2e-06,
+  "completion": 1e-05,
+  "max_tokens": 128000
+ },
+ {
+  "id": "qwen/qwen2-5-0-5b-instruct",
+  "name": "(Wiro) Qwen2.5 0.5B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-1-5b-instruct",
+  "name": "(Wiro) Qwen2.5 1.5B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-14b-instruct",
+  "name": "(Wiro) Qwen2.5 14B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-32b-instruct",
+  "name": "(Wiro) Qwen2.5 32B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-3b-instruct",
+  "name": "(Wiro) Qwen2.5 3B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-7b-instruct",
+  "name": "(Wiro) Qwen2.5 7B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-coder-32b-instruct",
+  "name": "(Wiro) Qwen2.5 Coder 32B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen2-5-coder-7b-instruct",
+  "name": "(Wiro) Qwen2.5 Coder 7B Instruct",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 2048
+ },
+ {
+  "id": "qwen/qwen3-30b-a3b",
+  "name": "(Wiro) Qwen3 30B A3B",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 4096
+ },
+ {
+  "id": "qwen/qwen3-30b-a3b-thinking-2507",
+  "name": "(Wiro) Qwen3 30B A3B Thinking 2507",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 4096
+ },
+ {
+  "id": "qwen/qwen3-32b",
+  "name": "(Wiro) Qwen3-32B",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 4096
+ },
+ {
+  "id": "qwen/qwen3-5-27b",
+  "name": "(Wiro) Qwen3.5-27B LLM Chat Model",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-5-27b-heretic",
+  "name": "(Wiro) Qwen3.5-27B-heretic LLM Model",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-5-4b",
+  "name": "(Wiro) Qwen3.5-4B Language Model",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-5-4b-heretic",
+  "name": "(Wiro) Qwen3.5-4B Heretic",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-5-9b",
+  "name": "(Wiro) Qwen3.5-9B Language Model",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-5-9b-heretic",
+  "name": "(Wiro) Qwen3.5-9B-heretic LLM",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-6-27b",
+  "name": "(Wiro) Qwen3.6-27B: Dense VLM",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-8-27b",
+  "name": "(Wiro) Qwen3.8-27B Chat Model",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-8-27b-obliterated",
+  "name": "(Wiro) Qwen 3.8 27B Obliterated",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "qwen/qwen3-8-27b-uncensored",
+  "name": "(Wiro) Qwen 3.8 27B Uncensored",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 16384
+ },
+ {
+  "id": "ricursiveai/ripple-65b-preview",
+  "name": "(Wiro) Ripple-65B Preview",
+  "image": false,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 8192
+ },
+ {
+  "id": "xai/grok-4-1-fast",
+  "name": "(Wiro) Grok 4.1 Fast by xAI for Agentic Chat",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 65536
+ },
+ {
+  "id": "xai/grok-4-20",
+  "name": "(Wiro) Grok 4.20 by xAI (Text + Vision)",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 65536
+ },
+ {
+  "id": "xai/grok-4-5",
+  "name": "(Wiro) Grok 4.5 Text + Vision Reasoning Model",
+  "image": true,
+  "endpoints": [
+   "anthropic",
+   "chat",
+   "cursor",
+   "responses"
+  ],
+  "prompt": null,
+  "completion": null,
+  "max_tokens": 65536
+ }
+]

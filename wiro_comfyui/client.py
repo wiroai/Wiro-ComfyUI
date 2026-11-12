@@ -68,6 +68,10 @@ class WiroCredentials:
     def uses_signature(self) -> bool:
         return bool(self._secret)
 
+    def bearer(self) -> str:
+        """Bearer value for the LLM gateway: the key, or key:secret."""
+        return f"{self._key}:{self._secret}" if self._secret else self._key
+
     def headers(self) -> dict[str, str]:
         """Auth headers for one request (a fresh nonce for signature projects)."""
         headers = {"x-api-key": self._key}
@@ -246,6 +250,15 @@ class WiroClient:
         if last_error is not None:
             log.warning("[Wiro] could not stop task %s: %s", task_id, last_error)
 
+    def upload_file(self, filename: str, content: bytes, mime: str) -> str:
+        """Upload a file to the project's Wiro storage and return its public URL."""
+        body = self.post("File/Upload", files=[("file", (filename, content, mime))], timeout=600)
+        items = body.get("list") or []
+        url = items[0].get("url") if items and isinstance(items[0], dict) else None
+        if not url:
+            raise WiroError("File/Upload returned no URL.")
+        return str(url)
+
     def tool_detail(self, owner: str, project: str) -> dict:
         body = self.post("Tool/Detail", json_body={"slugowner": owner, "slugproject": project})
         tools = body.get("tool") or []
@@ -313,6 +326,11 @@ def ensure_success(task: dict) -> None:
     pexit = str(task.get("pexit", "")).strip()
     if pexit != "0":
         detail = str(task.get("debugerror") or "").strip()
+        if not detail:
+            # Partner models write their reason to the task's text output.
+            lines = [line.strip() for line in str(task.get("debugoutput") or "").splitlines() if line.strip()]
+            lines = [line for line in lines if line.lower() not in ("request started.", "task failed")]
+            detail = " ".join(lines[-3:])
         if len(detail) > 600:
             detail = "..." + detail[-600:]
         message = f"Wiro task {task_id} failed (exit code {pexit or 'unknown'})."

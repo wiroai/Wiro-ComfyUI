@@ -34,3 +34,9 @@ class FakeSession:
 
     def paths(self):
         return [c["url"].split("/v1/", 1)[-1] for c in self.calls]
+
+
+def blocked(value):
+    """True for an output a node did not produce: None outside ComfyUI,
+    an ExecutionBlocker inside it."""
+    return value is None or type(value).__name__ == "ExecutionBlocker"
