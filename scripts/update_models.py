@@ -122,7 +122,7 @@ def parameters(tool: dict, excluded: list) -> list:
                 "advanced": bool(item.get("advanced")),
             }
             if ptype in ("fileinput", "multifileinput", "combinefileinput"):
-                max_files = number_or_none(item.get("maxinputlenght"))
+                max_files = number_or_none(item.get("maxinputlength"))
                 entry["max_files"] = max_files if isinstance(max_files, int) and max_files > 0 else None
             else:
                 entry["default"] = "" if item.get("defaultvalue") is None else str(item.get("defaultvalue"))

@@ -1,7 +1,11 @@
 import gzip
 import json
+import subprocess
+from pathlib import Path
 
 from wiro_comfyui import catalog, roles
+
+ROOT = Path(__file__).resolve().parents[1]
 
 TOOL = {
     "cleanslugowner": "openai",
@@ -14,7 +18,7 @@ TOOL = {
     "approximatelycost": 0,
     "dynamicprice": json.dumps([{"inputs": {"quality": "low"}, "price": 0.006, "priceMethod": "per-run"}]),
     "parameters": [{"items": [
-        {"id": "inputImage", "type": "combinefileinput", "maxinputlenght": 16, "label": "Input Images"},
+        {"id": "inputImage", "type": "combinefileinput", "maxinputlength": 16, "label": "Input Images"},
         {"id": "prompt", "type": "textarea", "defaultvalue": "a long sample prompt \u2014 with a dash", "required": True},
         {"id": "quality", "type": "select", "defaultvalue": "low", "options": [{"value": "low"}, {"value": "high"}]},
         {"id": "style", "type": "selectwithcover", "defaultvalue": "a", "options": [{"value": "a", "cover": "x.png"}]},
@@ -37,6 +41,30 @@ def test_compact_model():
     assert params["prompt"]["default"] == ""  # sample prompts are not kept
     assert params["style"]["type"] == "select" and params["style"]["options"] == ["a"]
     assert params["samples"]["min"] == 1 and params["samples"]["max"] == 10
+
+
+def test_file_limit_comes_from_maxinputlength():
+    capped = catalog.compact_param({"id": "inputImage", "type": "combinefileinput", "maxinputlength": 4})
+    assert capped["max_files"] == 4
+    misspelled = catalog.compact_param({"id": "inputImage", "type": "combinefileinput", "maxinput" + "lenght": 4})
+    assert misspelled["max_files"] is None  # the old name is not read
+
+
+def test_no_misspelled_maxinputlength():
+    # Wiro's catalog names the file limit maxinputlength; no tracked file may bring back the old
+    # misspelling, the gzipped catalog snapshot included.
+    needle = ("maxinput" + "lenght").encode()
+    names = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    found = []
+    for path in (ROOT / name for name in names.split("\0") if name):
+        if not path.is_file():
+            continue
+        data = path.read_bytes()
+        if path.suffix == ".gz":
+            data = gzip.decompress(data)
+        if needle in data.lower():
+            found.append(str(path.relative_to(ROOT)))
+    assert not found, f"the misspelled file limit name is back in {found}"
 
 
 def test_gpu_priced_model_and_realtime_skip():
@@ -75,6 +103,16 @@ def test_snapshot_ships_with_the_pack():
         assert picked[0][0]["slug"] == spec["default"], spec["node"]
     llm = json.load(open(catalog.LLM_SNAPSHOT, encoding="utf-8"))
     assert any(m["id"] == "openai/gpt-5-nano" for m in llm)
+
+
+def test_a_cache_saved_before_the_rename_is_not_read(monkeypatch, tmp_path):
+    # A 1.1.1 install that runs after Wiro's rename reads no file limits and saves catalog-v3.json.
+    stale = [dict(catalog.compact_model(TOOL), slug="old/model")]
+    (tmp_path / "catalog-v3.json").write_text(json.dumps(stale), encoding="utf-8")
+    monkeypatch.setattr(catalog, "_cache_dir", lambda: str(tmp_path))
+    models, age = catalog._load(catalog.CATALOG_CACHE, catalog.SNAPSHOT)
+    assert age is None, "the shipped snapshot is used, and a refresh follows"
+    assert models and all(m["slug"] != "old/model" for m in models)
 
 
 def test_start_uses_the_snapshot_offline(monkeypatch):
