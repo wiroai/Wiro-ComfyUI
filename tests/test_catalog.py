@@ -105,6 +105,16 @@ def test_snapshot_ships_with_the_pack():
     assert any(m["id"] == "openai/gpt-5-nano" for m in llm)
 
 
+def test_a_cache_saved_before_the_rename_is_not_read(monkeypatch, tmp_path):
+    # A 1.1.1 install that runs after Wiro's rename reads no file limits and saves catalog-v3.json.
+    stale = [dict(catalog.compact_model(TOOL), slug="old/model")]
+    (tmp_path / "catalog-v3.json").write_text(json.dumps(stale), encoding="utf-8")
+    monkeypatch.setattr(catalog, "_cache_dir", lambda: str(tmp_path))
+    models, age = catalog._load(catalog.CATALOG_CACHE, catalog.SNAPSHOT)
+    assert age is None, "the shipped snapshot is used, and a refresh follows"
+    assert models and all(m["slug"] != "old/model" for m in models)
+
+
 def test_start_uses_the_snapshot_offline(monkeypatch):
     monkeypatch.setattr(catalog, "_started", False)
     monkeypatch.setattr(catalog, "_cache_dir", lambda: None)
