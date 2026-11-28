@@ -146,12 +146,12 @@ def test_run_workflow_failure(monkeypatch, fake_session):
 
 def test_price_tables():
     tables = price_tables(
-        [{"slug": "a/b", "price": [{"inputs": {}, "price": 0.01, "method": "cpr"}], "cps": None, "approx": None}],
+        [{"slug": "a/b", "price": [{"inputs": {}, "price": 0.01, "method": "per-run"}], "cps": None, "approx": None}],
         [{"id": "m", "prompt": 1e-7, "completion": 2e-7}],
         {"WiroGPTImage2": "openai/gpt-image-2"},
     )
     assert tables == {
-        "models": {"a/b": {"price": [{"inputs": {}, "price": 0.01, "method": "cpr"}], "cps": None, "approx": None}},
+        "models": {"a/b": {"price": [{"inputs": {}, "price": 0.01, "method": "per-run"}], "cps": None, "approx": None}},
         "llm": {"m": {"prompt": 1e-7, "completion": 2e-7}},
         "fixed": {"WiroGPTImage2": "openai/gpt-image-2"},
     }

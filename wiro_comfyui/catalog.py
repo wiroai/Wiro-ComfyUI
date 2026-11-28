@@ -28,7 +28,7 @@ log = logging.getLogger("comfyui-wiro")
 
 LLM_MODELS_URL = "https://llm.wiro.ai/v1/models?limit=1000"
 REFRESH_AFTER = 6 * 3600  # seconds before a saved copy is fetched again
-CACHE_FORMAT = 2  # bump when the saved record shape changes; older files are ignored
+CACHE_FORMAT = 3  # bump when the saved record shape or its price method ids change; older files are ignored
 CATALOG_CACHE = f"catalog-v{CACHE_FORMAT}.json"
 LLM_CACHE = f"llm-models-v{CACHE_FORMAT}.json"
 PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))

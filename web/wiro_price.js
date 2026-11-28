@@ -63,8 +63,8 @@ export function priceLabel(info, values, promptText = "") {
   const entries = info.price ?? [];
   if (!entries.length) {
     // Priced by processing time: Wiro's typical cost per run, else the rate.
-    if (info.approx) return `~${usd(info.approx)}/run`;
-    return info.cps ? `${usd(info.cps)}/s` : "";
+    if (info.approx) return `~${usd(info.approx)} per run`;
+    return info.cps ? `${usd(info.cps)} per second of run time` : "";
   }
   const specific = entries.filter((e) => Object.keys(e.inputs ?? {}).length);
   const hit = specific.find((e) => matches(e, values)) ?? entries.find((e) => !Object.keys(e.inputs ?? {}).length);
@@ -73,33 +73,36 @@ export function priceLabel(info, values, promptText = "") {
     return Number.isFinite(lowest) ? `from ${usd(lowest)}` : "";
   }
   const price = Number(hit.price) || 0;
+  // Wiro's price methods, each with the words Wiro shows after its price.
   switch (hit.method) {
-    case "cpr":
-      return `${usd(price)}/run`;
-    case "cpo": {
+    case "per-run":
+      return `${usd(price)} per run`;
+    case "per-output-file": {
       const key = COUNT_KEYS.find((k) => Number(lookup(values, k)) > 1);
       const count = key ? Number(lookup(values, key)) : 1;
-      return count > 1 ? `${usd(price * count)}/run` : `${usd(price)}/output`;
+      return count > 1 ? `${usd(price * count)} per run` : `${usd(price)} per output file`;
     }
-    case "cps":
-      return `${usd(price)}/s`;
-    case "cpt":
-      return `${usd(price * 1e6)}/1M tokens`;
-    case "cp-pixel":
-      return `${usd(price)}/MP`;
-    case "cp-promptlength": {
+    case "per-run-second":
+      return `${usd(price)} per second of run time`;
+    case "per-total-token":
+      return `${usd(price * 1e6)} per 1M input and output tokens`;
+    case "per-output-megapixel":
+      return `${usd(price)} per output megapixel`;
+    case "per-input-character": {
       const length = String(promptText ?? "").length;
-      return length ? `~${usd(price * length)}` : `${usd(price)}/char`;
+      return length ? `~${usd(price * length)}` : `${usd(price)} per prompt character`;
     }
-    case "cp-audiosecondslength":
-      return `${usd(price)}/audio s`;
-    case "cp-outputVideoLength": {
+    case "per-input-audio-second":
+      return `${usd(price)} per second of input audio`;
+    case "per-input-video-second":
+      return `${usd(price)} per second of input video`;
+    case "per-output-video-second": {
       const seconds = Number(lookup(values, "duration") ?? lookup(values, "durationSeconds") ?? lookup(values, "length"));
-      return seconds > 0 ? `~${usd(price * seconds)}` : `${usd(price)}/video s`;
+      return seconds > 0 ? `~${usd(price * seconds)}` : `${usd(price)} per second of output video`;
     }
-    case "cp-readoutput":
-      // Billed from what the model reports (tokens, seconds of output): known after the run.
-      return "priced by usage";
+    case "reported-price":
+      // The run reports its own price when it ends (from tokens, seconds of output); the option's price is a reference.
+      return "price set when the run ends";
     default:
       return price ? usd(price) : "";
   }

@@ -12,7 +12,7 @@ TOOL = {
     "cps": "0.000000000000",
     "quegroupcps": "0",
     "approximatelycost": 0,
-    "dynamicprice": json.dumps([{"inputs": {"quality": "low"}, "price": 0.006, "priceMethod": "cpr"}]),
+    "dynamicprice": json.dumps([{"inputs": {"quality": "low"}, "price": 0.006, "priceMethod": "per-run"}]),
     "parameters": [{"items": [
         {"id": "inputImage", "type": "combinefileinput", "maxinputlenght": 16, "label": "Input Images"},
         {"id": "prompt", "type": "textarea", "defaultvalue": "a long sample prompt \u2014 with a dash", "required": True},
@@ -30,7 +30,7 @@ def test_compact_model():
     assert "\u2014" not in model["title"]
     assert model["runs"] == 174626
     assert model["cps"] is None and model["approx"] is None
-    assert model["price"] == [{"inputs": {"quality": "low"}, "price": 0.006, "method": "cpr"}]
+    assert model["price"] == [{"inputs": {"quality": "low"}, "price": 0.006, "method": "per-run"}]
     params = {p["id"]: p for p in model["params"]}
     assert set(params) == {"inputImage", "prompt", "quality", "style", "samples"}  # multiselect dropped
     assert params["inputImage"]["max_files"] == 16
@@ -57,9 +57,18 @@ def test_compact_llm_model():
                      "endpoints": ["chat", "responses"], "prompt": 5e-08, "completion": 4e-07, "max_tokens": 128000}
 
 
+# Every price method id the Wiro AI catalog serves.
+PRICE_METHODS = {
+    "per-run", "per-run-second", "per-output-file", "per-total-token", "per-output-megapixel",
+    "per-input-character", "per-input-audio-second", "per-input-video-second", "per-output-video-second",
+    "per-realtime-turn", "reported-price",
+}
+
+
 def test_snapshot_ships_with_the_pack():
     models = json.load(gzip.open(catalog.SNAPSHOT, "rt", encoding="utf-8"))
     assert len(models) > 300
+    assert {p["method"] for m in models for p in m["price"]} <= PRICE_METHODS
     for spec in roles.CATEGORY_SPECS:
         picked = roles.models_for(spec, models)
         assert picked, spec["node"]

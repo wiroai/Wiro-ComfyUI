@@ -67,7 +67,7 @@ The model nodes show each model's own settings (resolution, ratio, duration, voi
 
 ## Prices on the node
 
-Every Wiro node shows a price badge on its title bar, worked out in the browser from the model's pricing on Wiro AI for the settings you picked: `$0.006/run`, `$0.039/output`, `~$0.0037` for 46 characters of speech, `~$0.0012/run` for models priced by processing time, or the gateway's token prices on Wiro LLM. Models billed by what they produce, such as tokens or seconds of output, show `priced by usage`. After a run the badge shows what the task cost, as Wiro reported it (`paid $0.006`), until you change a setting. The ComfyUI console also logs each task with its ID, time and cost.
+Every Wiro node shows a price badge on its title bar, worked out in the browser from the model's pricing on Wiro AI for the settings you picked: `$0.006 per run`, `$0.039 per output file`, `~$0.0037` for 46 characters of speech, `~$0.0012 per run` for models priced by processing time, or the gateway's token prices on Wiro LLM. Models whose run reports its own price, such as from tokens or seconds of output, show `price set when the run ends`. After a run the badge shows what the task cost, as Wiro reported it (`paid $0.006`), until you change a setting. The ComfyUI console also logs each task with its ID, time and cost.
 
 ## Install
 
