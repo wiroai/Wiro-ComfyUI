@@ -85,7 +85,7 @@ def compact_param(item: dict) -> Optional[dict]:
         "advanced": bool(item.get("advanced")),
     }
     if ptype in FILE_TYPES:
-        max_files = _number(item.get("maxinputlenght"))
+        max_files = _number(item.get("maxinputlength"))
         entry["max_files"] = max_files if isinstance(max_files, int) and max_files > 0 else None
         return entry
     if ptype in ("text", "textarea", "json", "json-array"):
